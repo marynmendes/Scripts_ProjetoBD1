@@ -49,33 +49,38 @@ CREATE TABLE Estatistica (
     assistencia TINYINT UNSIGNED NOT NULL,
     rebotes TINYINT UNSIGNED NOT NULL,
     roubos TINYINT UNSIGNED NOT NULL,
-    bloqueios TINYINT UNSIGNED NOT NULL
+    bloqueios TINYINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_jogador, id_partida)
 );
 
 CREATE TABLE Participacao (
     id_jogador INTEGER UNSIGNED NOT NULL,
     id_jogo INTEGER UNSIGNED NOT NULL,
-    data_confirmacao DATE NOT NULL
+    data_confirmacao DATE NOT NULL,
+    PRIMARY KEY (id_jogador, id_jogo)
 );
 
 CREATE TABLE Formacao_Time (
     id_time INTEGER UNSIGNED NOT NULL,
     id_jogo INTEGER UNSIGNED NOT NULL,
-    id_jogador INTEGER UNSIGNED NOT NULL
+    id_jogador INTEGER UNSIGNED NOT NULL,
+    PRIMARY KEY (id_jogo, id_jogador)
 );
 
 CREATE TABLE Time_Partida (
     id_time INTEGER UNSIGNED NOT NULL,
     id_partida INTEGER UNSIGNED NOT NULL,
     resultado ENUM('vitoria','derrota','empate') NOT NULL,
-    pontuacao_total SMALLINT UNSIGNED NOT NULL
+    pontuacao_total SMALLINT UNSIGNED NOT NULL,
+    PRIMARY KEY (id_partida, id_time)
 );
 
 CREATE TABLE Paga (
     id_jogador INTEGER UNSIGNED NOT NULL,
     id_jogo INTEGER UNSIGNED NOT NULL,
     data_pagamento DATE NOT NULL,
-    valor_pago DECIMAL(5,2) UNSIGNED NOT NULL
+    valor_pago DECIMAL(5,2) UNSIGNED NOT NULL,
+    PRIMARY KEY (id_jogador, id_jogo)
 );
  
 ALTER TABLE Partida ADD CONSTRAINT FK_Partida_2
